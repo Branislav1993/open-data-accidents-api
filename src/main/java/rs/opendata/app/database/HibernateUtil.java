@@ -53,7 +53,7 @@ public class HibernateUtil {
 		prop.put("hibernate.connection.password", "povratakkralja0");
 		prop.put("hibernate.connection.pool_size", 10);
 		prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-		prop.put("hibernate.show_sql", true);
+		prop.put("hibernate.show_sql", false);
 
 		return prop;
 	}

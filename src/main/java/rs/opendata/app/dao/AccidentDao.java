@@ -55,7 +55,7 @@ public class AccidentDao {
 
 		String queryString = "SELECT * " + 
 							 "FROM nezgode as a " +
-						     "WHERE earth_box(ll_to_earth(:lat, :lng), :radius) @> ll_to_earth(a.lat, a.long)";
+						     "WHERE earth_box(ll_to_earth(:lat, :lng), :radius) @> ll_to_earth(a.lat, a.lng)";
 
 		Query query = session.createSQLQuery(queryString).addEntity(Accident.class);
 		query.setDouble("lat", latitude);

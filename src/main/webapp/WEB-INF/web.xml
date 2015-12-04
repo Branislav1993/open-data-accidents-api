@@ -12,6 +12,10 @@
 			<param-value>rs.opendata.app.rest,rs.opendata.app.exceptions</param-value>
 		</init-param>
 		<init-param>
+			<param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+			<param-value>com.sun.jersey.api.container.filter.GZIPContentEncodingFilter,rs.opendata.app.filters.CORSFilter</param-value>
+		</init-param>
+		<init-param>
 			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
 			<param-value>true</param-value>
 		</init-param>

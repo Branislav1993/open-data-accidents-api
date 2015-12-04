@@ -14,8 +14,13 @@ public class AccidentJsonParser {
 		JsonObject accidentJson = new JsonObject();
 
 		accidentJson.addProperty("id", a.getId());
-		accidentJson.addProperty("x", a.getLatidute());
+		accidentJson.addProperty("x", a.getLatitude());
 		accidentJson.addProperty("y", a.getLongitude());
+		accidentJson.addProperty("date", a.getDate().toString());
+		accidentJson.addProperty("temperature", a.getTemperature());
+		accidentJson.addProperty("prepicitation", a.getPrecipitation());
+		accidentJson.addProperty("summary", a.getSummary());
+		accidentJson.addProperty("type", a.getType());
 
 		return accidentJson;
 	}
