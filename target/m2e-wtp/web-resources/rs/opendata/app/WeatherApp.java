@@ -33,7 +33,7 @@ public class WeatherApp {
 		String s = "select id from nezgode";
 		String query = "from Accident a where a.id=";
 		DateFormat df = new SimpleDateFormat("yyyy-dd-MMhh:mm:00");
-		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.rcub.bg.ac.rs", 8080));
+		//Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.rcub.bg.ac.rs", 8080));
 
 		@SuppressWarnings("unchecked")
 		List<Integer> all = session1.createSQLQuery(s).list();
@@ -55,10 +55,10 @@ public class WeatherApp {
 			double lat = a.getLatitude();
 			double lng = a.getLongitude();
 
-			String url = "https://api.forecast.io/forecast/" + api2 + "/" + lat + "," + lng + "," + d + "?units=si";
+			String url = "https://api.forecast.io/forecast/" + api1 + "/" + lat + "," + lng + "," + d + "?units=si";
 
 			URL obj = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) obj.openConnection(proxy);
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 			// optional default is GET
 			con.setRequestMethod("GET");

@@ -22,7 +22,7 @@ import rs.opendata.app.domain.Accident;
 public class ImportApp {
 	public static void main(String[] args) {
 
-		Accident[] array = new Accident[13177];
+		Accident[] array = new Accident[12873];
 		for (int i = 0; i < array.length; i++) {
 			array[i] = new Accident();
 		}
@@ -74,14 +74,12 @@ public class ImportApp {
 
 			}
 			while ((line3 = br3.readLine()) != null) {
-				String s = "44." + line3;
-				Double d = Double.parseDouble(s);
+				Double d = Double.parseDouble(line3);
 				array[b3].setLatitude(d);
 				b3++;
 			}
 			while ((line4 = br4.readLine()) != null) {
-				String s = "20." + line4;
-				Double d = Double.parseDouble(s);
+				Double d = Double.parseDouble(line4);
 				array[b4].setLongitude(d);
 				b4++;
 			}

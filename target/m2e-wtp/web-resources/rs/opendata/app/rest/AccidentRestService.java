@@ -57,7 +57,9 @@ public class AccidentRestService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
 	public Response getAccidents(@QueryParam("page") int page,
-								 @QueryParam("limit") int limit) {
+								 @QueryParam("limit") int limit,
+								 @QueryParam("from") String from,
+								 @QueryParam("to") String to) {
 
 		if (limit == 0) {
 			limit = 10;
@@ -66,8 +68,16 @@ public class AccidentRestService {
 		if (page == 0) {
 			page = 1;
 		}
+		
+		if (from == null) {
+			from = "";
+		}
+		
+		if (to == null) {
+			to = "";
+		}
 
-		List<Accident> accidents = accidentService.getAccidents(page, limit);
+		List<Accident> accidents = accidentService.getAccidents(page, limit, from, to);
 
 		if (accidents.isEmpty()) {
 			try {
@@ -90,30 +100,30 @@ public class AccidentRestService {
 										 @QueryParam("lng") double longitude,
 										 @QueryParam("r") int radius,
 										 @QueryParam("page") int page,
-										 @QueryParam("limit") int limit) {
+										 @QueryParam("limit") int limit,
+										 @QueryParam("from") String from,
+										 @QueryParam("to") String to) {
 		
-		if (limit == 0) {
-			limit = 10;
-		}
-
-		if (page == 0) {
-			page = 1;
-		}
+		if (limit == 0) limit = 10;
 		
-		if (radius == 0) {
-			radius = 1000;
-		}
+		if (page == 0) 	page = 1;
 		
-		List<Accident> accidents = accidentService.getAccidentsInRadius(latitude, longitude, radius, page, limit);
+		if (radius == 0) radius = 1000;
 		
-		if (accidents.isEmpty()) {
-			try {
-				throw new AppException(Status.NOT_FOUND,
-						ResourceBundleUtil.getMessage("accidents.not_found.noAccidents"));
-			} catch (KeyNotFoundInBundleException e) {
-				logger.error(e);
-			}
-		}
+		if (from == null) from = "";
+		
+		if (to == null) to = "";
+		
+		List<Accident> accidents = accidentService.getAccidentsInRadius(latitude, longitude, radius, page, limit, from, to);
+		
+//		if (accidents.isEmpty()) {
+//			try {
+//				throw new AppException(Status.NOT_FOUND,
+//						ResourceBundleUtil.getMessage("accidents.not_found.noAccidents"));
+//			} catch (KeyNotFoundInBundleException e) {
+//				logger.error(e);
+//			}
+//		}
 		
 		String json = AccidentJsonParser.serializeAccidents(accidents).toString();
 

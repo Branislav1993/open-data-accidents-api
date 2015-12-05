@@ -7,6 +7,15 @@
 	<session-factory>
 		<!-- Mapping details -->
 		<mapping package="rs.opendata.app.domain" />
+		<mapping package="rs.opendata.app.statistics" />
 		<mapping class="rs.opendata.app.domain.Accident" />
+		<mapping class="rs.opendata.app.statistics.YearStatistics" />
+		<mapping class="rs.opendata.app.statistics.MonthStatistics" />
+		<mapping class="rs.opendata.app.statistics.DayStatistics" />
+		<mapping class="rs.opendata.app.statistics.HourStatistics" />
+		<mapping class="rs.opendata.app.statistics.QuarterStatistics" />
+		<mapping class="rs.opendata.app.statistics.TypeStatistics" />
+		<mapping class="rs.opendata.app.statistics.WeatherStatistics" />
+		<mapping class="rs.opendata.app.statistics.SummaryTypeStatistics" />
 	</session-factory>
 </hibernate-configuration>

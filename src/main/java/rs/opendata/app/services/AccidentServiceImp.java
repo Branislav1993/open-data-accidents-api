@@ -15,13 +15,13 @@ public class AccidentServiceImp implements AccidentService {
 	}
 
 	@Override
-	public List<Accident> getAccidents(int page, int limit) {
-		return ad.getAccidents(page, limit);
+	public List<Accident> getAccidents(int page, int limit, String from, String to) {
+		return ad.getAccidents(page, limit, from, to);
 	}
 
 	@Override
-	public List<Accident> getAccidentsInRadius(double latitude, double longitude, int radius, int page, int limit) {
-		return ad.getAccidentsInRadius(latitude, longitude, radius, page, limit);
+	public List<Accident> getAccidentsInRadius(double latitude, double longitude, int radius, int page, int limit, String from, String to) {
+		return ad.getAccidentsInRadius(latitude, longitude, radius, page, limit, from, to);
 	}
 
 }

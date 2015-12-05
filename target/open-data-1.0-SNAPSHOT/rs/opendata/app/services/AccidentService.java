@@ -8,6 +8,8 @@ public interface AccidentService {
 	
 	public Accident getAccident(int id);
 	
-	public List<Accident> getAccidents(int page, int limit);
+	public List<Accident> getAccidents(int page, int limit, String from, String to);
+
+	public List<Accident> getAccidentsInRadius(double latitude, double longitude, int radius, int page, int limit, String from, String to);
 
 }

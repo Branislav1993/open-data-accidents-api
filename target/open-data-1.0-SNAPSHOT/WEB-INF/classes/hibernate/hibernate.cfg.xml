@@ -7,6 +7,8 @@
 	<session-factory>
 		<!-- Mapping details -->
 		<mapping package="rs.opendata.app.domain" />
+		<mapping package="rs.opendata.app.statistics" />
 		<mapping class="rs.opendata.app.domain.Accident" />
+		<mapping class="rs.opendata.app.statistics.YearStatistics" />
 	</session-factory>
 </hibernate-configuration>

@@ -6,10 +6,10 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-
 @Provider
 public class AppExceptionMapper implements ExceptionMapper<AppException> {
 
+	@Override
 	public Response toResponse(AppException ex) {
 
 		ResponseBuilder response = Response.status(ex.getStatus());
