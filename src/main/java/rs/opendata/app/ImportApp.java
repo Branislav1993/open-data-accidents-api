@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.hibernate.Session;
@@ -65,10 +66,9 @@ public class ImportApp {
 			}
 
 			while ((line2 = br2.readLine()) != null) {
-				String string = line2.substring(1, line2.length() - 1);
-				DateFormat format = new SimpleDateFormat("dd.MM.yyyy,hh:mm");
+				DateFormat format = new SimpleDateFormat("dd.MM.yyyy,HH:mm");
 				format.setTimeZone(TimeZone.getTimeZone("Europe/Belgrade"));
-				Date date = format.parse(string);
+				Date date = format.parse(line2);
 				array[b2].setDate(date);
 				b2++;
 
@@ -117,9 +117,13 @@ public class ImportApp {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 		for (int i = 0; i < array.length; i++) {
-			session.save(array[i]);
+			Accident a = (Accident) session.createQuery("select a from Accident a where a.id="+array[i].getId()).uniqueResult();
+			
+			if (a != null) {
+				a.setDate(array[i].getDate());
+				session.save(a);
+			}
 		}
-
 		session.getTransaction().commit();
 		session.close();
 		HibernateUtil.getInstance().shutdown();

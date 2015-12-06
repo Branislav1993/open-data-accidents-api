@@ -107,4 +107,11 @@ public class Accident {
 				+ temperature + "]";
 	}
 
+	public boolean equals(Accident a) {
+		if (this.getId() == a.getId())
+			return true;
+		else
+			return false;
+	}
+
 }

@@ -33,7 +33,7 @@ public class WeatherApp {
 		String s = "select id from nezgode";
 		String query = "from Accident a where a.id=";
 		DateFormat df = new SimpleDateFormat("yyyy-dd-MMhh:mm:00");
-		//Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.rcub.bg.ac.rs", 8080));
+		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.rcub.bg.ac.rs", 8080));
 
 		@SuppressWarnings("unchecked")
 		List<Integer> all = session1.createSQLQuery(s).list();
@@ -44,13 +44,10 @@ public class WeatherApp {
 			Integer id = all.get(i);
 			
 			Accident a = (Accident) session.createQuery(query + id).uniqueResult();
-			if (a.getSummary() != null || a.getTemperature() != null || a.getPrecipitation() != null) {
-				session.getTransaction().commit();
-				continue;
-			}
-
+			
 			String d = df.format(a.getDate());
 			d = d.substring(0, 10) + "T" + d.substring(10, d.length());
+			System.out.println(d);
 
 			double lat = a.getLatitude();
 			double lng = a.getLongitude();
@@ -58,7 +55,7 @@ public class WeatherApp {
 			String url = "https://api.forecast.io/forecast/" + api1 + "/" + lat + "," + lng + "," + d + "?units=si";
 
 			URL obj = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection(proxy);
 
 			// optional default is GET
 			con.setRequestMethod("GET");
@@ -66,9 +63,9 @@ public class WeatherApp {
 			// add request header
 			con.setRequestProperty("User-Agent", USER_AGENT);
 
-			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + url);
-			System.out.println("Response Code : " + responseCode);
+//			int responseCode = con.getResponseCode();
+//			System.out.println("\nSending 'GET' request to URL : " + url);
+//			System.out.println("Response Code : " + responseCode);
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -108,7 +105,7 @@ public class WeatherApp {
 			a.setPrecipitation(prep);
 
 			session.saveOrUpdate(a);
-			System.out.println("Succes!");
+			System.out.println((i+1) + " " + a.getDate().toString());
 			session.getTransaction().commit();
 
 		}
