@@ -1,0 +1,12 @@
+{
+	dbConfig: {
+		url: "jdbc:postgresql://localhost:5432/opendata",
+		user: "user",
+		pass: "user123",
+		poolSize: 10
+	},
+	
+	query : {
+		limit : 10
+	}
+}

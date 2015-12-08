@@ -7,6 +7,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import rs.opendata.app.config.Settings;
+
 public class HibernateUtil {
 
 	private static SessionFactory sessionFactory;
@@ -48,11 +50,11 @@ public class HibernateUtil {
 	private Properties getProperties() {
 		Properties prop = new Properties();
 		prop.put("hibernate.connection.driver_class", "org.postgresql.Driver");
-		prop.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/opendata");
-		prop.put("hibernate.connection.user", "postgres");
-		prop.put("hibernate.connection.password", "povratakkralja0");
-		prop.put("hibernate.connection.pool_size", 10);
 		prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+		prop.put("hibernate.connection.url", Settings.getInstance().config.getDbConfig().url);
+		prop.put("hibernate.connection.user", Settings.getInstance().config.getDbConfig().user);
+		prop.put("hibernate.connection.password", Settings.getInstance().config.getDbConfig().pass);
+		prop.put("hibernate.connection.pool_size", Settings.getInstance().config.getDbConfig().poolSize);
 		prop.put("hibernate.show_sql", true);
 
 		return prop;
