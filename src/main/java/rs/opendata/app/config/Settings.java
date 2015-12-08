@@ -47,12 +47,10 @@ public class Settings {
 	}
 
 	private void loadConfig() throws Exception {
-		try {
-			if (System.getenv("OPEN_DATA").endsWith("OPEN_DATA")) {
-				absoluteConfigPath = System.getenv("OPEN_DATA") + File.separator + ".open-data" + File.separator;
-				logger.info("Used OPEN_DATA variable.");
-			}
-		} catch (Exception e) {
+		if (System.getenv("OPEN_DATA") != null) {
+			absoluteConfigPath = System.getenv("OPEN_DATA") + File.separator + ".open-data" + File.separator;
+			logger.info("Used OPEN_DATA variable.");
+		} else {
 			absoluteConfigPath = System.getProperty("user.home") + File.separator + ".open-data" + File.separator;
 			logger.info("Used user home variable. OPEN_DATA is not set.");
 		}
