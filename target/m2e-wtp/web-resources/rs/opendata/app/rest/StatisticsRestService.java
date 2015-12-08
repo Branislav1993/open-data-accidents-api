@@ -29,7 +29,7 @@ import rs.opendata.app.statistics.YearStatistics;
 import rs.opendata.app.util.KeyNotFoundInBundleException;
 import rs.opendata.app.util.ResourceBundleUtil;
 
-@Path("/api/statistics")
+@Path("/statistics")
 public class StatisticsRestService {
 
 	private final Logger logger = LogManager.getLogger(StatisticsRestService.class);

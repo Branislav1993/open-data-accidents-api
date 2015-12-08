@@ -10,6 +10,9 @@
 				<ThresholdFilter level="error" onMatch="ACCEPT" />
 			</Filters>
 		</Console>
+		<File name="AllLogs" fileName="logs/opendataLogs.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
 	</Appenders>
 	<Loggers>
 		<Root level="All">

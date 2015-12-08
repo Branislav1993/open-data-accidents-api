@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import rs.opendata.app.config.Settings;
 import rs.opendata.app.domain.Accident;
 import rs.opendata.app.domain.LatLngWrapper;
 import rs.opendata.app.exceptions.AppException;
@@ -26,7 +27,7 @@ import rs.opendata.app.services.AccidentServiceImp;
 import rs.opendata.app.util.KeyNotFoundInBundleException;
 import rs.opendata.app.util.ResourceBundleUtil;
 
-@Path("/api")
+@Path("/accidents")
 public class AccidentRestService {
 
 	protected AccidentService accidentService;
@@ -64,7 +65,7 @@ public class AccidentRestService {
 			@QueryParam("from") String from, @QueryParam("to") String to) {
 
 		if (limit == 0) {
-			limit = 10;
+			limit = Settings.getInstance().config.query.limit;
 		}
 
 		if (page == 0) {
@@ -108,7 +109,7 @@ public class AccidentRestService {
 			@QueryParam("fromh") Integer fromH, @QueryParam("toh") Integer toH) {
 
 		if (limit == 0)
-			limit = 10;
+			limit = Settings.getInstance().config.query.limit;
 
 		if (page == 0)
 			page = 1;

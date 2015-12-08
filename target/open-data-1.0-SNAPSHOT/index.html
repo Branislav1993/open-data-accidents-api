@@ -1,8 +1,113 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app="safetyPinApp">
+
 <head>
-<title>Open Data Rest API</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.jpg">
+
+    <title>Safety pin</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- CSS -->
+    <link href="dependencies/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="dependencies/js/bootstrap.min.js"></script>
+
+
 </head>
+
 <body>
-	<h1>OPEN Data Rest API started</h1>
+
+<section id="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container" id="mainNav">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img id="logo" src="images/logo.png" alt="SafetyPin" height="85" width="230">
+                </a>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="mapa.html">Mapa</a>
+                    </li>
+                    <li><a href="putanja.html">Putanja</a>
+                    </li>
+                    <li><a href="dodaj-nezgodu.html">Dodaj nezgodu</a>
+                    </li>
+                    <li><a href="statistika.html">Statistika</a>
+                    </li>
+                    <li><a href="savetnik.html">Savetnik</a>
+                    </li>
+                    <li><a href="api.html">API</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</section>
+
+<section id="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div id="map" style="position:absolute;
+left:0px;top:0px;right:0px;bottom:0px;"></div>
+        </div>
+        <div class="col-md-3" id="vrh">
+            <img id="streetview"
+                 src="https://maps.googleapis.com/maps/api/streetview?size=400x250&location=Belgrade,Serbia8&heading=151.78&pitch=-0.76">
+
+            <div id="date">
+                <h1 class="vreme-nesrece" id="time">*****</h1>
+
+                <p class="inlajn" id="dayOfWeek">********</p>
+
+                <p class="inlajn" id="date1">*******</p>
+            </div>
+
+            <div id="ikonica-nesrece">
+                <img id="centriraj-sliku" src="images/povrede.png">
+
+                <p id="tip-nesrece">Sa povredama</p>
+            </div>
+
+            <div id="vreme" class="col-md-8 col-md-offset-2">
+                <div id="oblaci" class="col-md-5">
+                    <img id="oblacic" src="images/Humid and Mostly Cloudy.png">
+                    <p id="padavina" class="text-center">Kiša</p>
+                </div>
+                <div class="col-md-1"></div>
+                <div id="temperatura" class="col-md-6">
+                    <img id="toplomer" src="images/temperatura.png">
+                    <p id="temp-cel" class="inlajn"><span id="temp-br"></span>°C</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcg8PCP5Oo3iBwndK8FTqG0vXlXffAgEs"></script>
+<script type="text/javascript" src="dependencies/js/markerclusterer.js"></script>
+<script type="text/javascript" src="dependencies/js/cluster.js"></script>
+<script type="text/javascript" src="dependencies/js/baki.js"></script>
+
+
 </body>
+
 </html>

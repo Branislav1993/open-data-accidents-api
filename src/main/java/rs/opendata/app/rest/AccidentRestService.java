@@ -27,7 +27,7 @@ import rs.opendata.app.services.AccidentServiceImp;
 import rs.opendata.app.util.KeyNotFoundInBundleException;
 import rs.opendata.app.util.ResourceBundleUtil;
 
-@Path("/api")
+@Path("/accidents")
 public class AccidentRestService {
 
 	protected AccidentService accidentService;

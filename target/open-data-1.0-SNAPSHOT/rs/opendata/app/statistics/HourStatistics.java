@@ -1,8 +1,16 @@
 package rs.opendata.app.statistics;
 
-public class HourStatistics {
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class HourStatistics {
+	
+	@Id
 	private Integer hour;
+	
+	@Basic
 	private Integer numberOfAccidents;
 
 	public Integer getHour() {

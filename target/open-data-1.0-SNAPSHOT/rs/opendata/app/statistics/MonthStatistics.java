@@ -1,15 +1,23 @@
 package rs.opendata.app.statistics;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class MonthStatistics {
 
-	private String month;
+	@Id
+	private Integer month;
+
+	@Basic
 	private Integer numberOfAccidents;
 
-	public String getMonth() {
+	public Integer getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(Integer month) {
 		this.month = month;
 	}
 

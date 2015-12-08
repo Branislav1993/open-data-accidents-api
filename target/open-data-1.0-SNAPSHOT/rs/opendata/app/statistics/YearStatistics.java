@@ -9,6 +9,7 @@ public class YearStatistics {
 
 	@Id
 	private Integer year;
+	
 	@Basic
 	private Integer numberOfAccidents;
 
