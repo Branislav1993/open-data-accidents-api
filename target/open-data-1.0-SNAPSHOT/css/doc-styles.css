@@ -2,11 +2,13 @@
     height: 100%;
     position: fixed;
     overflow: hidden;
+    padding-top: 10px;
+    font-size: 1em;
 }
 
 #sidebar, #sidebar a {
     color: black;
-    background-color: #f2f2f2;
+    background-color: #CF3227;
 }
 
 #member {
@@ -21,12 +23,7 @@
 }
 
 #sidebar > .nav-stacked > li > a {
-    padding-bottom: 3px;
-    transition: all .1s linear;
-}
-
-#sidebar > .nav-stacked > li > a {
-    transform: scale(1.1);
+    padding-bottom: 0px;
 }
 
 .endpoint-doc {
@@ -35,7 +32,7 @@
 
 h3 {
     padding-top: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .values {
@@ -43,7 +40,7 @@ h3 {
 }
 
 pre {
-    background-color: #FFD393;
+    background-color: #FFD281;
 }
 
 .documentation {
@@ -53,7 +50,6 @@ pre {
 body {
     margin-top: -20px;
 }
-
-#sidebar {
-    font-size: 0.5em;
+#logo {
+    height: 60px;
 }

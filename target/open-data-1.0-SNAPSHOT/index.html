@@ -1,113 +1,121 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="safetyPinApp">
-
+<html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/favicon.jpg">
+    <meta name="description" content="belgrade accidents api">
+    <meta name="author" content="branislav.vidojevic">
+    <link rel="icon" href="img/favicon.jpg">
 
-    <title>Safety pin</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- CSS -->
-    <link href="dependencies/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <title>Safety Pin | API</title>
 
-    <!-- JavaScript -->
-    <script src="dependencies/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link href="css/doc-styles.css" rel="stylesheet">
+
+    <!-- Core Angular-->
+    <script type="text/javascript" src="js/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular/angular-scroll.min.js"></script>
 
 </head>
 
-<body>
+<body id="page-top" ng-app="app">
 
-<section id="navigation">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container" id="mainNav">
-
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img id="logo" src="images/logo.png" alt="SafetyPin" height="85" width="230">
-                </a>
-            </div>
-
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="mapa.html">Mapa</a>
-                    </li>
-                    <li><a href="putanja.html">Putanja</a>
-                    </li>
-                    <li><a href="dodaj-nezgodu.html">Dodaj nezgodu</a>
-                    </li>
-                    <li><a href="statistika.html">Statistika</a>
-                    </li>
-                    <li><a href="savetnik.html">Savetnik</a>
-                    </li>
-                    <li><a href="api.html">API</a></li>
-                </ul>
-            </div>
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="pull-left" href="#page-top" du-smooth-scroll du-scrollspy><img src="img/logo.png" id="logo"></a>
         </div>
-    </nav>
 
-</section>
-
-<section id="container">
-    <div class="row">
-        <div class="col-md-9">
-            <div id="map" style="position:absolute;
-left:0px;top:0px;right:0px;bottom:0px;"></div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                </li>
+            </ul>
         </div>
-        <div class="col-md-3" id="vrh">
-            <img id="streetview"
-                 src="https://maps.googleapis.com/maps/api/streetview?size=400x250&location=Belgrade,Serbia8&heading=151.78&pitch=-0.76">
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<div ng-controller="DocsCtrl">
+    <div class="col-md-3 col-xs-4" id="sidebar">
+        <!-- sidebar -->
+        <ul class="nav nav-stacked col-sm-offset-2">
+            <li><a href="#page-top" du-smooth-scroll du-scrollspy><h3>Endpoints /api/ <i
+                    class="glyphicon glyphicon glyphicon-chevron-up pull-right"></i></h3></a></li>
+            <li><a href="#api" du-smooth-scroll du-scrollspy offset="30">GET /accidents</a></li>
+            <li><a href="#accidentsAll" du-smooth-scroll du-scrollspy offset="30">GET /accidents/all</a></li>
+            <li><a href="#accidentId" du-smooth-scroll du-scrollspy offset="30">GET /accidents/:id</a></li>
+            <li><a href="#circle" du-smooth-scroll du-scrollspy offset="30">GET /accidents/circle</a></li>
+            <li><a href="#path" du-smooth-scroll du-scrollspy offset="30">POST /accidents/path</a></li>
+            <li><a href="#year" du-smooth-scroll du-scrollspy offset="30">GET /statistics/year</a></li>
+            <li><a href="#quarter" du-smooth-scroll du-scrollspy offset="30">GET /statistics/quarter</a></li>
+            <li><a href="#month" du-smooth-scroll du-scrollspy offset="30">GET /statistics/month</a></li>
+            <li><a href="#day" du-smooth-scroll du-scrollspy offset="30">GET /statistics/day</a></li>
+            <li><a href="#hour" du-smooth-scroll du-scrollspy offset="30">GET /statistics/hour</a>
+            </li>
+            <li><a href="#type" du-smooth-scroll du-scrollspy offset="30">GET /statistics/type</a></li>
+            <li><a href="#weather" du-smooth-scroll du-scrollspy offset="30">GET /statistics/weather</a></li>
+            <li><a href="#summary" du-smooth-scroll du-scrollspy offset="30">GET /statistics/summary</a></li>
+            <li><a href="#all" du-smooth-scroll du-scrollspy offset="30">GET /statistics/all</a></li>
+            <li><a href="#reportsGet" du-smooth-scroll du-scrollspy offset="30">GET /reports</a></li>
+            <li><a href="#reportsAdd" du-smooth-scroll du-scrollspy offset="30">POST /reports/add</a></li>
+        </ul>
+    </div>
+    <!-- /sidebar -->
 
-            <div id="date">
-                <h1 class="vreme-nesrece" id="time">*****</h1>
+    <div class="col-md-8 col-md-offset-4 col-xs-offset-4 documentation">
+        <h2 class="heading"><i>REST API</i> endpoints</h2>
+        <br>
 
-                <p class="inlajn" id="dayOfWeek">********</p>
+        <div class="col-md-8">
+            <p class="text-justify">The <a href="https://en.wikipedia.org/wiki/Representational_state_transfer"
+                                           target="_blank">REST</a>
+                endpoints provide programmatic access to data about accidents in Belgrade.
+                They enable insights into a specific accident, location, date, type of accident, weather conditions.</p>
 
-                <p class="inlajn" id="date1">*******</p>
-            </div>
-
-            <div id="ikonica-nesrece">
-                <img id="centriraj-sliku" src="images/povrede.png">
-
-                <p id="tip-nesrece">Sa povredama</p>
-            </div>
-
-            <div id="vreme" class="col-md-8 col-md-offset-2">
-                <div id="oblaci" class="col-md-5">
-                    <img id="oblacic" src="images/Humid and Mostly Cloudy.png">
-                    <p id="padavina" class="text-center">Kiša</p>
-                </div>
-                <div class="col-md-1"></div>
-                <div id="temperatura" class="col-md-6">
-                    <img id="toplomer" src="images/temperatura.png">
-                    <p id="temp-cel" class="inlajn"><span id="temp-br"></span>°C</p>
-                </div>
-
-
-            </div>
+            <p> Responses are available in <a href="http://www.json.org/" target="_blank">JSON</a> format, and the use
+                of the API is free.</p>
         </div>
     </div>
+    <hr class="primary">
+    <!-- documentation -->
+    <div ng-include="'views/panelDocs.html'"></div>
+    <!-- /documentation -->
+</div>
 
-</section>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBcg8PCP5Oo3iBwndK8FTqG0vXlXffAgEs"></script>
-<script type="text/javascript" src="dependencies/js/markerclusterer.js"></script>
-<script type="text/javascript" src="dependencies/js/cluster.js"></script>
-<script type="text/javascript" src="dependencies/js/baki.js"></script>
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Angular app module -->
+<script type="text/javascript" src="js/docApp.js"></script>
 
 
 </body>
-
 </html>

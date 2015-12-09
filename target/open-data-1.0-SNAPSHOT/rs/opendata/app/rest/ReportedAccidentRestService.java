@@ -18,7 +18,7 @@ import rs.opendata.app.services.ReportedAccidentService;
 import rs.opendata.app.services.ReportedAccidentServiceImp;
 import rs.opendata.app.statistics.ReportedAccidentStatistics;
 
-@Path("api/reports")
+@Path("/reports")
 public class ReportedAccidentRestService {
 	protected ReportedAccidentService raService;
 

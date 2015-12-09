@@ -1,0 +1,40 @@
+body {
+    padding-top: 50px;
+}
+
+#speechText {
+    padding: 10px 20px;
+}
+
+tr[ng-click] {
+    cursor: pointer;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+.bio {
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.pagination > li > a {
+    color: #f05f40;
+}
+
+.pagination > .active > a {
+    background-color: #f05f40;
+    border-color: #f05f40;
+}
+
+form {
+    padding-bottom: 30px;
+}
+
+.table-hover>tbody>tr.selected,
+.table-hover>tbody>tr.selected:hover{
+    background-color: #f05f40;
+    color: white;
+}

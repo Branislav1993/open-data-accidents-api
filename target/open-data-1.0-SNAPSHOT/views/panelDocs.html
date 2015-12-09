@@ -1,29 +1,29 @@
 <section id="member" class="col-md-8 col-md-offset-4 col-xs-offset-4">
-    <div class="row" ng-repeat="d in docs">
+    <div class="container" ng-repeat="d in docs">
         <div class="row">
             <div id="{{d.id}}" class="endpoint-doc">
 
                 <h1 class="heading">{{d.title}}</h1>
                 <br>
 
-                <h2><i>{{d.description}}</i></h2>
+                <h2 class="col-md-8"><i>{{d.description}}</i></h2>
 
                 <div class="col-md-12">
                     <h3 class="heading">Resource URL</h3>
 
                     <p>{{d.url}}</p>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12 col-xs-12">
                     <h3 class="heading">Resource information</h3>
 
-                    <div class="table-responsive ">
+                    <div class="table-responsive table-striped col-sm-4 col-xs-8">
                         <table class="table">
                             <tbody>
                             <tr>
                                 <td>Response Formats</td>
                                 <td>{{d.info[0]}}</td>
                             </tr>
-                            <tr style="padding-top:50px">
+                            <tr>
                                 <td>Requires authentication</td>
                                 <td>{{d.info[1]}}</td>
                             </tr>
@@ -63,9 +63,9 @@
                 <div class="col-md-12">
                     <h3 class="heading">Example Request</h3>
 
-                    <p>{{d.request}}</p>
+                    <a href="{{d.request}}" target="_blank"><p>{{d.request}}</p></a>
                 </div>
-                <div class="col-sm-8 col-xs-12">
+                <div class="col-sm-7 col-xs-12">
                     <h3 class="heading">Example Result</h3>
                     <pre><p>{{formatJson(d.result)}}</p></pre>
                 </div>
@@ -73,3 +73,4 @@
         </div>
     </div>
 </section>
+
