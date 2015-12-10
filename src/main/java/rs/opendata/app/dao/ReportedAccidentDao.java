@@ -34,7 +34,7 @@ public class ReportedAccidentDao {
 		Long sum = (Long) session.createCriteria(ReportedAccident.class).setProjection(Projections.rowCount())
 				.uniqueResult();
 		BigInteger solved = (BigInteger) session
-				.createSQLQuery("Select count(case when status then 1 else 0 end) from prijavljenje_nezgode")
+				.createSQLQuery("Select sum(case when status then 1 else 0 end) from prijavljenje_nezgode")
 				.uniqueResult();
 
 		int a = Integer.parseInt(Long.valueOf(sum).toString());
