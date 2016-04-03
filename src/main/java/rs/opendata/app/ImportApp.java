@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.hibernate.Session;
@@ -22,16 +25,19 @@ import rs.opendata.app.domain.Accident;
 public class ImportApp {
 	public static void main(String[] args) {
 
-		Accident[] array = new Accident[12873];
+		DateFormat format = new SimpleDateFormat("dd.MM.yyyy,HH:mm");
+		format.setTimeZone(TimeZone.getTimeZone("Europe/Belgrade"));
+
+		Accident[] array = new Accident[18360];
 		for (int i = 0; i < array.length; i++) {
 			array[i] = new Accident();
 		}
 
-		String c1 = "C:/Users/Branislav Vidojevic/Desktop/c1.csv";
-		String c2 = "C:/Users/Branislav Vidojevic/Desktop/c2.csv";
-		String c3 = "C:/Users/Branislav Vidojevic/Desktop/c3.csv";
-		String c4 = "C:/Users/Branislav Vidojevic/Desktop/c4.csv";
-		String c5 = "C:/Users/Branislav Vidojevic/Desktop/c5.csv";
+		String c1 = "C:/Users/Baki/Desktop/1.csv";
+		String c2 = "C:/Users/Baki/Desktop/2.csv";
+		String c3 = "C:/Users/Baki/Desktop/3.csv";
+		String c4 = "C:/Users/Baki/Desktop/4.csv";
+		String c5 = "C:/Users/Baki/Desktop/5.csv";
 
 		BufferedReader br1 = null;
 		BufferedReader br2 = null;
@@ -65,10 +71,8 @@ public class ImportApp {
 			}
 
 			while ((line2 = br2.readLine()) != null) {
-				DateFormat format = new SimpleDateFormat("dd.MM.yyyy,HH:mm");
-				format.setTimeZone(TimeZone.getTimeZone("Europe/Belgrade"));
 				Date date = format.parse(line2);
-				array[b2].setDate(date);
+				array[b2].setDate(new Timestamp(date.getTime()));
 				b2++;
 
 			}
@@ -105,23 +109,37 @@ public class ImportApp {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
+		// for (int i = 0; i < array.length; i++) {
+		// if (array[i].getId() == 1103411) {
+		// array[i].setId(1);
+		// break;
+		// }
+		// }
+
+		List<Accident> lista = new LinkedList<>();
+
 		for (int i = 0; i < array.length; i++) {
-			if(array[i].getId() == 1103411) {
-				array[i].setId(1);
-				break;
-			}
+			if (lista.contains(array[i])) continue;
+				lista.add(array[i]);
 		}
 
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
-		for (int i = 0; i < array.length; i++) {
-			Accident a = (Accident) session.createQuery("select a from Accident a where a.id="+array[i].getId()).uniqueResult();
-			
-			if (a != null) {
-				a.setDate(array[i].getDate());
-				session.save(a);
-			}
+		// for (int i = 0; i < array.length; i++) {
+		// Accident a = (Accident) session.createQuery("select a from Accident a
+		// where a.id=" + array[i].getId())
+		// .uniqueResult();
+		//
+		// if (a != null) {
+		// a.setDate(array[i].getDate());
+		// session.save(a);
+		// }
+		// }
+		// session.getTransaction().commit();
+
+		for (int i = 0; i < lista.size(); i++) {
+			session.save(lista.get(i));
 		}
 		session.getTransaction().commit();
 		session.close();

@@ -155,7 +155,7 @@ public class AccidentDao {
 
 		for (int i = 0; i < points.size(); i++) {
 
-			String queryString = "SELECT * " + "FROM nezgode as a "
+			String queryString = "SELECT * " + "FROM nezgode_updated as a "
 					+ "WHERE earth_box(ll_to_earth(:lat, :lng), :radius) @> ll_to_earth(a.lat, a.lng)";
 
 			Query query = session.createSQLQuery(queryString).addEntity(Accident.class);

@@ -28,7 +28,7 @@ public class StatisticsDao {
 		session.beginTransaction();
 
 		String queryString = "SELECT cast(date_part('year', date) as integer) as year, count(*) as numberOfAccidents "
-				+ "FROM nezgode " + "GROUP by year";
+				+ "FROM nezgode_updated " + "GROUP by year";
 
 		Query query = session.createSQLQuery(queryString).addEntity(YearStatistics.class);
 
@@ -45,7 +45,7 @@ public class StatisticsDao {
 		session.beginTransaction();
 
 		String queryString = "SELECT cast(date_part('month', date) as integer) as month, count(*) as numberOfAccidents "
-				+ "FROM nezgode " + "GROUP by month " + "ORDER BY month";
+				+ "FROM nezgode_updated " + "GROUP by month " + "ORDER BY month";
 
 		Query query = session.createSQLQuery(queryString).addEntity(MonthStatistics.class);
 
@@ -61,7 +61,7 @@ public class StatisticsDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		String queryString = "SELECT EXTRACT(DOW FROM date) as dayOfWeek, count(*) as numberOfAccidents FROM nezgode GROUP by dayOfWeek order by dayOfWeek";
+		String queryString = "SELECT EXTRACT(DOW FROM date) as dayOfWeek, count(*) as numberOfAccidents FROM nezgode_updated GROUP by dayOfWeek order by dayOfWeek";
 
 		Query query = session.createSQLQuery(queryString).addEntity(DayStatistics.class);
 
@@ -77,7 +77,7 @@ public class StatisticsDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		String queryString = "SELECT EXTRACT(HOUR FROM date) as hour, count(*) as numberOfAccidents FROM nezgode GROUP by hour order by hour";
+		String queryString = "SELECT EXTRACT(HOUR FROM date) as hour, count(*) as numberOfAccidents FROM nezgode_updated GROUP by hour order by hour";
 
 		Query query = session.createSQLQuery(queryString).addEntity(HourStatistics.class);
 
@@ -93,7 +93,7 @@ public class StatisticsDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		String queryString = "SELECT EXTRACT(QUARTER FROM date) as quarter, count(*) as numberOfAccidents FROM nezgode GROUP by quarter order by quarter";
+		String queryString = "SELECT EXTRACT(QUARTER FROM date) as quarter, count(*) as numberOfAccidents FROM nezgode_updated GROUP by quarter order by quarter";
 
 		Query query = session.createSQLQuery(queryString).addEntity(QuarterStatistics.class);
 
@@ -109,7 +109,7 @@ public class StatisticsDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		String queryString = "SELECT type, count(*) as numberOfAccidents FROM nezgode GROUP by type order by type";
+		String queryString = "SELECT type, count(*) as numberOfAccidents FROM nezgode_updated GROUP by type order by type";
 
 		Query query = session.createSQLQuery(queryString).addEntity(TypeStatistics.class);
 
@@ -125,7 +125,7 @@ public class StatisticsDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		String queryString = "SELECT precipitation as weather, count(*) as numberOfAccidents FROM nezgode GROUP by weather order by weather";
+		String queryString = "SELECT precipitation as weather, count(*) as numberOfAccidents FROM nezgode_updated GROUP by weather order by weather";
 
 		Query query = session.createSQLQuery(queryString).addEntity(WeatherStatistics.class);
 
@@ -141,7 +141,7 @@ public class StatisticsDao {
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 		session.beginTransaction();
 
-		String queryString = "SELECT summary, count(*) as numberOfAccidents FROM nezgode GROUP by summary order by numberOfAccidents DESC";
+		String queryString = "SELECT summary, count(*) as numberOfAccidents FROM nezgode_updated GROUP by summary order by numberOfAccidents DESC";
 
 		Query query = session.createSQLQuery(queryString).addEntity(SummaryTypeStatistics.class);
 

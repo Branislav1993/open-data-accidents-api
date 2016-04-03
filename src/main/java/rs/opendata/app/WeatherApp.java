@@ -30,9 +30,9 @@ public class WeatherApp {
 		Session session1 = HibernateUtil.getInstance().getSessionFactory().openSession();
 		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
 
-		String s = "select id from nezgode";
+		String s = "select id from nezgode_updated";
 		String query = "from Accident a where a.id=";
-		DateFormat df = new SimpleDateFormat("yyyy-dd-MMhh:mm:00");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-ddhh:mm:00");
 		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.rcub.bg.ac.rs", 8080));
 
 		@SuppressWarnings("unchecked")
@@ -44,6 +44,10 @@ public class WeatherApp {
 			Integer id = all.get(i);
 			
 			Accident a = (Accident) session.createQuery(query + id).uniqueResult();
+			if(a.getTemperature() != null) {
+				session.getTransaction().commit();
+				continue;
+			}
 			
 			String d = df.format(a.getDate());
 			d = d.substring(0, 10) + "T" + d.substring(10, d.length());
@@ -53,6 +57,7 @@ public class WeatherApp {
 			double lng = a.getLongitude();
 
 			String url = "https://api.forecast.io/forecast/" + api1 + "/" + lat + "," + lng + "," + d + "?units=si";
+			System.out.println(url);
 
 			URL obj = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection(proxy);
@@ -96,16 +101,16 @@ public class WeatherApp {
 
 			}
 
-			System.out.println(summary);
-			System.out.println(prep);
-			System.out.println(temp);
+//			System.out.println(summary);
+//			System.out.println(prep);
+//			System.out.println(temp);
 
 			a.setSummary(summary);
 			a.setTemperature(temp);
 			a.setPrecipitation(prep);
 
 			session.saveOrUpdate(a);
-			System.out.println((i+1) + " " + a.getDate().toString());
+			//System.out.println((i+1) + " " + a.getDate().toString());
 			session.getTransaction().commit();
 
 		}

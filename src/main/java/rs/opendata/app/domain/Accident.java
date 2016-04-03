@@ -1,6 +1,6 @@
 package rs.opendata.app.domain;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "nezgode")
+@Table(name = "nezgode_updated")
 public class Accident {
 
 	@Id
@@ -22,7 +22,7 @@ public class Accident {
 	private double longitude;
 
 	@Column(name = "date")
-	private Date date;
+	private Timestamp date;
 
 	@Column(name = "type")
 	private int type;
@@ -60,11 +60,11 @@ public class Accident {
 		this.longitude = longitude;
 	}
 
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 
@@ -107,11 +107,29 @@ public class Accident {
 				+ temperature + "]";
 	}
 
-	public boolean equals(Accident a) {
-		if (this.getId() == a.getId())
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		else
+		if (obj == null)
 			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Accident other = (Accident) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }
