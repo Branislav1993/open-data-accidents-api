@@ -46,9 +46,9 @@ public class ReportedAccidentRestService {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
 	public Response getPathAccidents(ReportedAccident ra) {
 
-		ReportedAccidentStatistics ras = raService.getGlobalStatus();
-
 		raService.saveReportedAccident(ra);
+
+		ReportedAccidentStatistics ras = raService.getGlobalStatus();
 
 		String json = ReportedAccidentJsonParser.serializeGlobalStatus(ras).toString();
 
